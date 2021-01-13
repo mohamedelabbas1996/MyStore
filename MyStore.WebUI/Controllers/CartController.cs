@@ -28,10 +28,10 @@ namespace MyStore.WebUI.Controllers
         
 
         Product product = repository.Products.FirstOrDefault(p=>p.ProductID == productID);
+
             if (product!=null) cart.RemoveItem(product);
 
             return RedirectToAction("Index", new { returnUrl });
-
 
         }
         public PartialViewResult Summary(Cart cart) {
