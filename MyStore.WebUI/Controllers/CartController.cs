@@ -27,6 +27,8 @@ namespace MyStore.WebUI.Controllers
         public RedirectToRouteResult RemoveFromCart(Cart cart,int productID, string returnUrl) { 
         
 
+
+
         Product product = repository.Products.FirstOrDefault(p=>p.ProductID == productID);
 
             if (product!=null) cart.RemoveItem(product);
