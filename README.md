@@ -12,7 +12,7 @@ Features:
 Technology used:
 
 - ASP.NET MVC 5
-- Entity Framework 
+- Entity Framework v6 
 - Identity Framework
 - HTML5
 - ASP.NET Razor
