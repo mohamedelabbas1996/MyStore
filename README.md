@@ -13,7 +13,7 @@ Technology used:
 
 - ASP.NET MVC 5
 - Entity Framework 
-- Identity Frameworkt
+- Identity Framework
 - HTML5
 - ASP.NET Razor
 - Bootstrap 4
