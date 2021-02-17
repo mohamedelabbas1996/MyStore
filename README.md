@@ -18,4 +18,5 @@ Technology used:
 - ASP.NET Razor
 - Bootstrap 4
 - MS SQL Server
+- MSTest
 
