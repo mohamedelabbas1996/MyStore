@@ -17,4 +17,5 @@ Technology used:
 - HTML5
 - ASP.NET Razor
 - Bootstrap 4
+- MS SQL Server
 
