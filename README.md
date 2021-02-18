@@ -1,5 +1,5 @@
 # MyStore
-A simple E-Shopping Web Application<br>
+<b>A simple E-Shopping Web Application</b><br>
 Features:
 - User can register
 - User can login
