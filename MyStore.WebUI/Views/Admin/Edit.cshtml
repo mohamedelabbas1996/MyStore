@@ -1,0 +1,53 @@
+﻿@model MyStore.Domain.Entities.Product
+
+@{
+    ViewBag.Title = "Edit";
+  
+}
+
+
+<div class="panel panel-default" >
+    
+    <div class="panel-heading">
+        <h2>Edit @Model.Name</h2>
+    </div>
+@using (Html.BeginForm("Edit","Admin")){
+    <div class="panel-body">
+       
+            @Html.Hidden("ProductID",Model.ProductID)
+
+            
+        @foreach (var property in ViewData.ModelMetadata.Properties) {
+            if (property.PropertyName!="ProductID"){
+                <div class="form-group">
+                    <label>@(property.DisplayName??property.PropertyName)</label>
+                    
+                    @if(property.PropertyName =="Description"){
+                    @Html.TextArea("Description",Model.Description,new {@class="form-control"})
+
+                    }else{
+                    @Html.TextBox(property.PropertyName,null,null ,new  {@class="form-control"})
+                    }
+                    @Html.ValidationMessage(property.PropertyName)
+                </div>
+        }
+
+
+
+        }
+
+    </div>
+    <div class="panel-footer">
+
+        <input class="btn btn-primary" type="submit" value="Save" />
+        @Html.ActionLink("Return To List", "Index", null,  new {@class="btn btn-default" })
+        
+    </div>
+}
+
+
+</div>
+
+
+
+

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MyStore.Domain.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+   
+}
+
+<div class="panel panel-default ">
+    <div class="panel-heading">
+        <h3>All Products</h3>
+</div>
+
+    <div class="panel-body">
+        <table class="table-striped table-condensed table-bordered"  >
+
+            <tr>
+                <th  class="text-right">
+                    ID
+                </th>
+                <th class="text-right">
+                    Product Name
+                </th>
+                <th class="text-right">
+                    Price
+                </th>
+                <th class="text-center">
+                    Actions
+
+                </th>
+
+            </tr>
+            @foreach (var item in Model) { 
+            
+               <tr>
+                <td class="text-right">
+                    @item.ProductID
+                </td>
+                   <td class="text-right">
+                       @item.Name
+                   </td>
+                   <td class="text-right">
+                       @item.Price
+                   </td>
+
+                   <td class="text-center">
+                      
+                       @Html.ActionLink("Edit", "Edit", new { @item.ProductID }, new {style="display:inline"})
+                       @using (Html.BeginForm("Delete","Admin")) {
+                           @Html.Hidden("ProductID",@item.ProductID) 
+                       <input type="submit" value="Delete" class="btn btn-default btn-xs" >
+                       }
+                   </td>
+
+
+
+
+            </tr>
+            }
+
+        </table>
+
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Add New Product", "Create", null, new  {@class ="btn btn-default" })
+
+    </div>
+    </div>
+
+
+
