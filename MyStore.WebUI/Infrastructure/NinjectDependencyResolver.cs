@@ -3,6 +3,7 @@ using MyStore.Domain.Abstract;
 using MyStore.Domain.Concrete;
 using MyStore.Domain.Entities;
 using Ninject;
+using System.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,13 @@ namespace MyStore.WebUI.Infrastructure
             });
               */
             kernel.Bind<IProductsRepository>().To<EFProductsRepository>();
-        
+
+            EmailSettings settings = new EmailSettings
+            {
+                WriteAsFile =false
+
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings",settings);
         
         }
     }

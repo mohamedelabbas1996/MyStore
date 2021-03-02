@@ -180,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
@@ -193,6 +194,10 @@
     <Compile Include="Migrations\202012081251337_FirstMigration.cs" />
     <Compile Include="Migrations\202012081251337_FirstMigration.Designer.cs">
       <DependentUpon>202012081251337_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102181447473_Added_ImgaeData.cs" />
+    <Compile Include="Migrations\202102181447473_Added_ImgaeData.Designer.cs">
+      <DependentUpon>202102181447473_Added_ImgaeData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -223,7 +228,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -253,6 +260,11 @@
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\Summary.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\Complete.cshtml" />
+    <Content Include="Views\Admin\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +287,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012081251337_FirstMigration.resx">
       <DependentUpon>202012081251337_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102181447473_Added_ImgaeData.resx">
+      <DependentUpon>202102181447473_Added_ImgaeData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

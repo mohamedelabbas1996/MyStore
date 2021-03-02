@@ -9,11 +9,14 @@ using System.Web.Mvc;
 
 namespace MyStore.WebUI.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
+        private IOrderProcessor orderProcessor; 
         private IProductsRepository repository;
-        public CartController(IProductsRepository _repo) {
+        public CartController(IProductsRepository _repo, IOrderProcessor proc) {
             repository = _repo;
+            orderProcessor = proc;
         
         }
 
@@ -67,6 +70,30 @@ namespace MyStore.WebUI.Controllers
             };
 
             return View(viewModel);
+        }
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        {
+            if (cart.Lines.Count() == 0) {
+                ModelState.AddModelError("", "Your Cart is empty, please select something ");
+            
+            }
+            if (ModelState.IsValid)
+            {
+                //orderProcessor.ProessOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Complete");
+            }
+            else {
+                return View(shippingDetails);
+            }
+           
+
+
+          
+        }
+        public ViewResult Checkout() {
+            return View(new ShippingDetails());
         }
 	}
 }

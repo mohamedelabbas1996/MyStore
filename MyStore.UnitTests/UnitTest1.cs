@@ -38,21 +38,22 @@ namespace MyStore.UnitTests
 
 
             //Assert
-            ProductsListViewModel result = (ProductsListViewModel)productsController.List(null,2).Model;
-          
+            ProductsListViewModel result = (ProductsListViewModel)productsController.List(null, 2).Model;
+
             Product[] productsArray = result.Products.ToArray();
             Assert.IsTrue(productsArray.Length == 3);
-            Assert.AreEqual(productsArray[0].Name , "P4");
-            Assert.AreEqual(productsArray[1].Name , "P5");
+            Assert.AreEqual(productsArray[0].Name, "P4");
+            Assert.AreEqual(productsArray[1].Name, "P5");
 
 
 
 
         }
         [TestMethod]
-        public void Can_Generate_PageLinks() { 
-        
-        //Arrange
+        public void Can_Generate_PageLinks()
+        {
+
+            //Arrange
 
             System.Web.Mvc.HtmlHelper myHelper = null;
 
@@ -64,21 +65,22 @@ namespace MyStore.UnitTests
 
             };
 
-            Func<int , string> pageUrl = i=> "Page"+i;
+            Func<int, string> pageUrl = i => "Page" + i;
 
 
             //Act
-            MvcHtmlString result = myHelper.PageLinks(pageInfo,pageUrl);
+            MvcHtmlString result = myHelper.PageLinks(pageInfo, pageUrl);
             //Assert
             Assert.AreEqual(@"<a class=""btn btn-default"" href=""Page1"">1</a>"
 + @"<a class=""btn btn-default btn-primary selected"" href=""Page2"">2</a>"
 + @"<a class=""btn btn-default"" href=""Page3"">3</a>",
 result.ToString());
-        
-        
+
+
         }
         [TestMethod]
-        public void Can_Send_Pagination_ViewModel(){
+        public void Can_Send_Pagination_ViewModel()
+        {
             //Arrange
             Mock<IProductsRepository> repository = new Mock<IProductsRepository>();
             repository.Setup(m => m.Products).Returns(new List<Product> { 
@@ -89,17 +91,17 @@ result.ToString());
               new Product {  ProductID =4,Name = "P4", Price = 55}
 
             
-            }); 
+            });
             //Act
             ProductsController controller = new ProductsController(repository.Object);
-            controller.PAGE_SIZE =3 ;
-            ProductsListViewModel productsVM = (ProductsListViewModel)controller.List(null,2).Model;
-            
+            controller.PAGE_SIZE = 3;
+            ProductsListViewModel productsVM = (ProductsListViewModel)controller.List(null, 2).Model;
+
 
             //Assert
             Assert.AreEqual(productsVM.PagingInfo.CurrentPage, 2);
             Assert.AreEqual(productsVM.PagingInfo.TotalItems, 4);
-           Assert.AreEqual(productsVM.PagingInfo.ItemsPerPage, 3);
+            Assert.AreEqual(productsVM.PagingInfo.ItemsPerPage, 3);
             Assert.AreEqual(productsVM.PagingInfo.TotalPages, 2);
 
 
@@ -125,8 +127,8 @@ result.ToString());
             //Act
             ProductsController controller = new ProductsController(repository.Object);
             controller.PAGE_SIZE = 3;
-           ProductsListViewModel result = (ProductsListViewModel) controller.List("Cat1", 1).Model; 
-            Product [] ProdArray = result.Products.ToArray(); 
+            ProductsListViewModel result = (ProductsListViewModel)controller.List("Cat1", 1).Model;
+            Product[] ProdArray = result.Products.ToArray();
             //Assert
             Assert.AreEqual(ProdArray.Length, 3);
             Assert.AreEqual(ProdArray[0].Name, "P1");
@@ -150,7 +152,7 @@ result.ToString());
             
             
             });
-            
+
 
 
             //Act
@@ -158,13 +160,13 @@ result.ToString());
 
 
             var categories = (IEnumerable<string>)controller.Menu().Model;
-            string[] categoriesArr = categories.ToArray(); 
+            string[] categoriesArr = categories.ToArray();
 
 
             //Assert 
 
 
-            Assert.AreEqual(categoriesArr[0],"Cat1");
+            Assert.AreEqual(categoriesArr[0], "Cat1");
             Assert.AreEqual(categoriesArr[1], "Cat2");
             Assert.AreEqual(categoriesArr[2], "Cat3");
             Assert.AreEqual(categoriesArr.Length, 3);
@@ -189,7 +191,7 @@ result.ToString());
 
             });
 
-           
+
 
             //Act
             string categoryToSelect = "Cat1";
@@ -201,8 +203,9 @@ result.ToString());
 
         }
         [TestMethod]
-        public void Can_Generate_Category_Specific_Count() { 
-        //Arrange
+        public void Can_Generate_Category_Specific_Count()
+        {
+            //Arrange
             Mock<IProductsRepository> repo = new Mock<IProductsRepository>();
             repo.Setup(m => m.Products).Returns(new List<Product>() { 
             
@@ -218,17 +221,37 @@ result.ToString());
 
             //Act
             ProductsController controller = new ProductsController(repo.Object);
-            int resAll = ((ProductsListViewModel)controller.List(null).Model).PagingInfo.TotalItems; 
+            int resAll = ((ProductsListViewModel)controller.List(null).Model).PagingInfo.TotalItems;
             int res1 = ((ProductsListViewModel)controller.List("Cat1").Model).PagingInfo.TotalItems;
             int res2 = ((ProductsListViewModel)controller.List("Cat2").Model).PagingInfo.TotalItems;
             int res3 = ((ProductsListViewModel)controller.List("Cat3").Model).PagingInfo.TotalItems;
 
 
             //Assert
-                Assert.AreEqual(resAll,6);
-                Assert.AreEqual(res1, 3);
-                Assert.AreEqual(res2, 2);
-                Assert.AreEqual(res3, 1);
-        } 
+            Assert.AreEqual(resAll, 6);
+            Assert.AreEqual(res1, 3);
+            Assert.AreEqual(res2, 2);
+            Assert.AreEqual(res3, 1);
+        }
+        [TestMethod]
+        public void Cannot_Checkout_Empty_Cart()
+        {
+            //Arrange
+
+
+
+            //Act
+            //Assert
+
+
+        }
+        [TestMethod]
+        public void Can_Make_Order() { }
+        [TestMethod]
+        public void Cannot_Send_Invalid_Shipping_Details() { }
+
+
+
     }
+
 }

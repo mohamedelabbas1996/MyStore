@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using MyStore.Domain.Entities;
+using System.Data.Entity;
 
 namespace MyStore.WebUI.Models
 {
@@ -13,5 +15,6 @@ namespace MyStore.WebUI.Models
             : base("DefaultConnection")
         {
         }
+        public DbSet<Product> Products { set; get; }
     }
 }

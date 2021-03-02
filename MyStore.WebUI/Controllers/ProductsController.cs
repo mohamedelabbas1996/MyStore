@@ -8,6 +8,7 @@ using MyStore.WebUI.Models;
 
 namespace MyStore.WebUI.Controllers
 {
+   
     public class ProductsController : Controller
     {
         private IProductsRepository repository;
